@@ -1,5 +1,5 @@
 {
-    "name": "Inputs",
+    "name": "MyPlayerInputs",
     "maps": [
         {
             "name": "Player",
@@ -10,6 +10,15 @@
                     "type": "Value",
                     "id": "bdc3e642-cea9-4e62-b8b2-e4dd37a1eeda",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LOOK-Y",
+                    "type": "Value",
+                    "id": "b9cb426b-4f94-42b3-92ac-cf891e7d6cbe",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -68,6 +77,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "MOVE",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "12dc8ebe-2b22-43a9-b262-e5728f1df8b5",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LOOK-Y",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "1c779f5a-a702-41e8-bde1-44b3fe9e018f",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LOOK-Y",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a86afa7f-f8b7-40f7-82d3-abbe24d3888d",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LOOK-Y",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

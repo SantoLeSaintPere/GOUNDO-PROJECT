@@ -8,6 +8,8 @@ public class PlayerInputReader : MonoBehaviour
     // Start is called before the first frame update
     public Vector2 moveValue;
     public bool isMoving;
+
+    public float yValue;
     private void Awake()
     {
         playerInputs = new MyPlayerInputs();
@@ -22,15 +24,13 @@ public class PlayerInputReader : MonoBehaviour
     {
         playerInputs.Player.Disable();
     }
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         moveValue = playerInputs.Player.MOVE.ReadValue<Vector2>();
         isMoving = moveValue.x !=0 || moveValue.y !=0;
+
+        yValue = playerInputs.Player.LOOKY.ReadValue<float>();
     }
 }
