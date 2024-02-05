@@ -180,6 +180,34 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""439538c0-c3fb-4975-8d88-4753975f995a"",
+            ""actions"": [
+                {
+                    ""name"": ""QUIT"",
+                    ""type"": ""Button"",
+                    ""id"": ""9119566d-c37a-41ef-9670-d263de581b52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""595e95b4-8b2c-4adc-887b-df9026ede9a2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QUIT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -188,6 +216,9 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MOVE = m_Player.FindAction("MOVE", throwIfNotFound: true);
         m_Player_LOOKY = m_Player.FindAction("LOOK-Y", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_QUIT = m_UI.FindAction("QUIT", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -299,9 +330,59 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_QUIT;
+    public struct UIActions
+    {
+        private @MyPlayerInputs m_Wrapper;
+        public UIActions(@MyPlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @QUIT => m_Wrapper.m_UI_QUIT;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @QUIT.started += instance.OnQUIT;
+            @QUIT.performed += instance.OnQUIT;
+            @QUIT.canceled += instance.OnQUIT;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @QUIT.started -= instance.OnQUIT;
+            @QUIT.performed -= instance.OnQUIT;
+            @QUIT.canceled -= instance.OnQUIT;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnMOVE(InputAction.CallbackContext context);
         void OnLOOKY(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnQUIT(InputAction.CallbackContext context);
     }
 }
