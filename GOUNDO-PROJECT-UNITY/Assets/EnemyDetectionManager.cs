@@ -28,7 +28,8 @@ public class EnemyDetectionManager : MonoBehaviour
     public bool playerInFov;
     public LayerMask playerLayer;
 
-    Transform playerTarget;
+    [HideInInspector]
+    public Transform playerTarget;
 
     private void Awake()
     {

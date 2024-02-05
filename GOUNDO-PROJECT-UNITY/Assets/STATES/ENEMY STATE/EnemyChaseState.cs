@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoveState : EnemyBaseState
+public class EnemyChaseState : EnemyBaseState
 {
-    public EnemyMoveState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public EnemyChaseState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
     }
 
@@ -14,24 +14,17 @@ public class EnemyMoveState : EnemyBaseState
 
     public override void InUpdate()
     {
+        Chase();
 
         if (stateMachine.detectionManager.alertStage == AlertStage.peaceful)
         {
-            Patrol();
+            stateMachine.NextState(new EnemyMoveState(stateMachine));
         }
 
         if (stateMachine.detectionManager.alertStage == AlertStage.intrigued)
         {
             NoMove();
         }
-
-
-        if (stateMachine.detectionManager.alertStage == AlertStage.alerted)
-        {
-            stateMachine.NextState(new EnemyChaseState(stateMachine));
-        }
-
-
     }
 
     public override void OnExit()
