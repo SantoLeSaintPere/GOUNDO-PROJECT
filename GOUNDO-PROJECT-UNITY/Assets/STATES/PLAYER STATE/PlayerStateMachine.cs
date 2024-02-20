@@ -13,6 +13,9 @@ public class PlayerStateMachine : StateMachine
     [HideInInspector]
     public Animator animator;
 
+    [HideInInspector]
+    public PlayerGroundDetector groundDetector;
+
     public float speed = 1f;
     [HideInInspector]
     public float yLook;
@@ -23,7 +26,7 @@ public class PlayerStateMachine : StateMachine
         inputReader = GetComponent<PlayerInputReader>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-
+        groundDetector = GetComponent<PlayerGroundDetector>();
         NextState(new PlayerMoveState(this));
     }
 }

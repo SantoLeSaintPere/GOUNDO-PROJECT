@@ -7,7 +7,7 @@ public class PlayerGroundDetector : MonoBehaviour
     public Transform groundDetectorHolder;
     public Transform groundDetector;
     public float range;
-    public bool grounded;
+    public bool isGrounded;
     public LayerMask groundLayer;
 
     PlayerInputReader inputReader;
@@ -22,7 +22,7 @@ public class PlayerGroundDetector : MonoBehaviour
     {
         Rotate();
 
-        grounded = Physics.Raycast(groundDetector.position, Vector3.down, range);
+        isGrounded = Physics.Raycast(groundDetector.position, Vector3.down, range);
     }
 
     void Rotate()

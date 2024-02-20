@@ -29,8 +29,12 @@ public abstract class PlayerBaseState : State
         dir = Quaternion.AngleAxis(stateMachine.transform.rotation.eulerAngles.y, Vector3.up) * dir;
         dir.Normalize();
 
+        if(stateMachine.groundDetector.isGrounded)
+        {
+            stateMachine.characterController.Move(dir * stateMachine.speed * Time.deltaTime);
+        }
 
-        stateMachine.characterController.Move(dir * stateMachine.speed * Time.deltaTime);
+
 
         if (stateMachine.inputReader.isMoving)
         {
