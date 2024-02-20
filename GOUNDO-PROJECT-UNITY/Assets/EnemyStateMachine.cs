@@ -20,7 +20,6 @@ public class EnemyStateMachine : StateMachine
     {
         agent = GetComponent<NavMeshAgent>();
         detectionManager = GetComponent<EnemyDetectionManager>();
-
         currentWaypoint = 0;
         NextState(new EnemyMoveState(this));
         
