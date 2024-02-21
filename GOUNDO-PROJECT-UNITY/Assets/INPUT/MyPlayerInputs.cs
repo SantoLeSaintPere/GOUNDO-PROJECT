@@ -193,6 +193,15 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RELOAD"",
+                    ""type"": ""Button"",
+                    ""id"": ""5409ec93-d206-48a2-9186-38b9ff1652f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -204,6 +213,17 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QUIT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79fabca2-8b74-409a-87eb-b0496448530a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RELOAD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -219,6 +239,7 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_QUIT = m_UI.FindAction("QUIT", throwIfNotFound: true);
+        m_UI_RELOAD = m_UI.FindAction("RELOAD", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -335,11 +356,13 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_QUIT;
+    private readonly InputAction m_UI_RELOAD;
     public struct UIActions
     {
         private @MyPlayerInputs m_Wrapper;
         public UIActions(@MyPlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @QUIT => m_Wrapper.m_UI_QUIT;
+        public InputAction @RELOAD => m_Wrapper.m_UI_RELOAD;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -352,6 +375,9 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
             @QUIT.started += instance.OnQUIT;
             @QUIT.performed += instance.OnQUIT;
             @QUIT.canceled += instance.OnQUIT;
+            @RELOAD.started += instance.OnRELOAD;
+            @RELOAD.performed += instance.OnRELOAD;
+            @RELOAD.canceled += instance.OnRELOAD;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -359,6 +385,9 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
             @QUIT.started -= instance.OnQUIT;
             @QUIT.performed -= instance.OnQUIT;
             @QUIT.canceled -= instance.OnQUIT;
+            @RELOAD.started -= instance.OnRELOAD;
+            @RELOAD.performed -= instance.OnRELOAD;
+            @RELOAD.canceled -= instance.OnRELOAD;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -384,5 +413,6 @@ public partial class @MyPlayerInputs: IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnQUIT(InputAction.CallbackContext context);
+        void OnRELOAD(InputAction.CallbackContext context);
     }
 }

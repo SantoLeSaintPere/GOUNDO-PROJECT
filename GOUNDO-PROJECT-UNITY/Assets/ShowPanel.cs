@@ -14,8 +14,7 @@ public class ShowPanel : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            gameManager.winPanel.SetActive(true);
-            Time.timeScale = 0;
+            gameManager.Win();
         }
     }
 }

@@ -16,7 +16,7 @@ public class EnemyDetectionManager : MonoBehaviour
     [HideInInspector]
     public Color color;
     public Color[] colors;
-    public float fov = 90;
+    public float fov ;
     [Range(0, 360)]
     public float fovAngle;
 

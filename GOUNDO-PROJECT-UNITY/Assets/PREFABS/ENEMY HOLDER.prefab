@@ -459,17 +459,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   detectionManager: {fileID: 0}
-  patrolSpeed: 4.5
-  chaseSpeed: 6
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   waypoint:
   - {fileID: 8313499647068138945}
-  - {fileID: 4528123511836600489}
-  - {fileID: 2483376167559353776}
-  - {fileID: 2796790296928569035}
-  - {fileID: 7734281511038200369}
-  - {fileID: 6873679382276150021}
-  - {fileID: 3312840867709868726}
-  - {fileID: 8374522766617757645}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentWaypoint: 0
 --- !u!114 &1918289049470901463
 MonoBehaviour:
@@ -488,8 +486,8 @@ MonoBehaviour:
   colors:
   - {r: 0, g: 1, b: 0.1551485, a: 0.50980395}
   - {r: 1, g: 0, b: 0.04943371, a: 0.50980395}
-  fov: 7
-  fovAngle: 360
+  fov: 5
+  fovAngle: 90
   alertLevel: 0
   playerInFov: 0
   playerLayer:

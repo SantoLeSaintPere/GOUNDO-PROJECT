@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject winPanel, losePanel;
     public float timeToReload;
 
+    bool cantLose;
     private void Awake()
     {
         inputActions = new MyPlayerInputs();
@@ -38,13 +39,33 @@ public class GameManager : MonoBehaviour
         {
             QuitApplication();
         }
+
+        if (inputActions.UI.RELOAD.IsPressed())
+        {
+            Reload();
+        }
+    }
+
+    public void Win()
+    {
+        cantLose = true;
+        winPanel.SetActive(true);
+        Invoke("LoadScene", timeToReload);
     }
 
     public void Lose()
     {
-        losePanel.SetActive(true);
-        Invoke("Reload", timeToReload);
+        if(!cantLose)
+        {
+            losePanel.SetActive(true);
+            Invoke("Reload", timeToReload);
+        }
 
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Reload()
