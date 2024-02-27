@@ -16,7 +16,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        health = maxHealth;   
+        health = maxHealth;
+        checkHealth = true;
     }
 
     // Update is called once per frame
@@ -24,13 +25,27 @@ public class PlayerHealth : MonoBehaviour
     {
         healthBar.fillAmount = health/maxHealth;
 
-        Invoke("CheckHealth", 2);
+        if(checkHealth)
+        {
+            Invoke("CheckHealth", 2);
+        }
 
         if(health <=0)
         {
             health = 0;
             gameManager.Lose();
         }
+    }
+
+    public void GiveLife(int healthToGIve)
+    {
+        checkHealth = false;
+        health += healthToGIve;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        checkHealth = true;
     }
 
     void CheckHealth()

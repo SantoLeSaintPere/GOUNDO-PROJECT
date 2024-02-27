@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1526297291654580800}
   - component: {fileID: 8808203405449451318}
   - component: {fileID: 3819498902198234793}
+  - component: {fileID: 541955953146020514}
   m_Layer: 7
   m_Name: PLAYER
   m_TagString: Player
@@ -138,6 +139,7 @@ MonoBehaviour:
   inputReader: {fileID: 0}
   characterController: {fileID: 0}
   animator: {fileID: 0}
+  groundDetector: {fileID: 0}
   speed: 5
   yLook: 0
   rotSpeed: 5
@@ -176,10 +178,10 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 4
-  m_Radius: 1.12
+  m_Radius: 0.64
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.1
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!95 &8808203405449451318
@@ -218,10 +220,25 @@ MonoBehaviour:
   groundDetectorHolder: {fileID: 5575619332077609831}
   groundDetector: {fileID: 5965385492052266266}
   range: 1
-  grounded: 0
+  isGrounded: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &541955953146020514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516881308790194991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2d21fce30cad544ac61996f731c9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  health: 0
+  maxHealth: 25
 --- !u!1 &4950628950800986198
 GameObject:
   m_ObjectHideFlags: 0
