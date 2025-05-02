@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.26530764, g: 0.09746974, b: 0.01193476, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1892,7 +1891,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1918289049470901463, guid: 0c7bee7791e39734bbe5b13e810b7346, type: 3}
       propertyPath: fovAngle
-      value: 118.7
+      value: 117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918289049470901463, guid: 0c7bee7791e39734bbe5b13e810b7346, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483376167559353776, guid: 0c7bee7791e39734bbe5b13e810b7346, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1913,6 +1916,10 @@ PrefabInstance:
     - target: {fileID: 3168696377853252457, guid: 0c7bee7791e39734bbe5b13e810b7346, type: 3}
       propertyPath: m_Name
       value: ENEMY HOLDER
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570991446220753041, guid: 0c7bee7791e39734bbe5b13e810b7346, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4528123511836600489, guid: 0c7bee7791e39734bbe5b13e810b7346, type: 3}
       propertyPath: m_LocalPosition.x
